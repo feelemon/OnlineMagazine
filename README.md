@@ -5,7 +5,7 @@
 Общие сведения
 --------------
 
-**Music Store** **TAG: Music, Free, Download, Roscomzazor**
+**Music Store**, **TAG: #Music, #Free, #Download, #Roscomzazor**
 
 ### Описание проекта:
 -------------------------------------------------------
