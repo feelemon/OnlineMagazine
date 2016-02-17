@@ -5,7 +5,7 @@
 Общие сведения
 --------------
 
-**Online Magazine of Music**
+**Music Store**
 
 ### Описание проекта:
 
