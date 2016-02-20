@@ -10,7 +10,8 @@
 ### Описание проекта:
 -------------------------------------------------------
 
-[Wiki](http://wiki.cs.hse.ru/Проектная_работа_2_курс_(2016)) [Github](https://github.com/feelemon/OnlineMagazine) [draw.io](https://drive.google.com/file/d/0B3fs3UtoJ8aZYW4tVnJrcEFHcnc/view?usp=sharing)
+[Wiki](http://wiki.cs.hse.ru/Проектная_работа_2_курс_(2016)) [Github](https://github.com/feelemon/OnlineMagazine) [Внешняя сторона проекта](https://drive.google.com/file/d/0B3fs3UtoJ8aZYW4tVnJrcEFHcnc/view?usp=sharing) [Функционал] (
+https://drive.google.com/file/d/0B3fs3UtoJ8aZVFJUVDI2dGZhZEk/view?usp=sharing)
 
 SoundFilch - онлайн магазин по продаже музыки, оснащенный функцией прослушивания перед покупкой (preview) и определяющий права исполнителя по сигнатуре дорожки со смежного сервиса.
 
