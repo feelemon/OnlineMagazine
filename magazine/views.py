@@ -5,10 +5,57 @@ from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.shortcuts import redirect
 
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login
+from django.views.generic.edit import FormView
+from django.contrib.auth.forms import UserCreationForm
+
+class RegisterFormView(FormView):
+    form_class = UserCreationForm
+    # Ссылка, на которую будет перенаправляться пользователь в случае успешной регистрации.
+    # В данном случае указана ссылка на страницу входа для зарегистрированных пользователей.
+    success_url = "/magazine.login.html/"
+
+    # Шаблон, который будет использоваться при отображении представления.
+    template_name = "magazine/register.html"
+
+    def form_valid(self, form):
+        # Создаём пользователя, если данные в форму были введены корректно.
+        form.save()
+
+        # Вызываем метод базового класса
+        return super(RegisterFormView, self).form_valid(form)
 # Create your views here.
 
+def form_valid(self, form):
+        # Создаём пользователя, если данные в форму были введены корректно.
+        form.save()
+
+        # Вызываем метод базового класса
+        return super(RegisterFormView, self).form_valid(form)
+
+# Опять же, спасибо django за готовую форму аутентификации.
+
+class LoginFormView(FormView):
+    form_class = AuthenticationForm
+
+    # Аналогично регистрации, только используем шаблон аутентификации.
+    template_name = "magazine/login.html"
+
+    # В случае успеха перенаправим на главную.
+    success_url = "/"
+
+    def form_valid(self, form):
+        # Получаем объект пользователя на основе введённых в форму данных.
+        self.user = form.get_user()
+
+        # Выполняем аутентификацию пользователя.
+        login(self.request, self.user)
+        return super(LoginFormView, self).form_valid(form)
+
+
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'magazine/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
@@ -41,3 +88,4 @@ def post_edit(request, pk):
         else:
             form = PostForm(instance=post)
         return render(request, 'magazine/post_edit.html', {'form': form})
+
