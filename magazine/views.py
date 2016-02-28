@@ -57,7 +57,7 @@ class LoginFormView(FormView):
 
         # Выполняем аутентификацию пользователя.
         login(self.request, self.user)
-        return super(LoginFormView, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class LogoutView(View):
@@ -66,7 +66,7 @@ class LogoutView(View):
         logout(request)
 
         # После чего, перенаправляем пользователя на главную страницу.
-        return render(request, 'magazine/login.html',)
+        return render(request, 'magazine/post_list.html',)
 
 
 def post_list(request):
