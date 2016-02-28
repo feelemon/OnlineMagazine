@@ -6,9 +6,14 @@ from .forms import PostForm
 from django.shortcuts import redirect
 
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
+
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
+
+from django.http import HttpResponseRedirect
+from django.views.generic.base import View
+
 
 class RegisterFormView(FormView):
     form_class = UserCreationForm
@@ -36,6 +41,7 @@ def form_valid(self, form):
 
 # Опять же, спасибо django за готовую форму аутентификации.
 
+
 class LoginFormView(FormView):
     form_class = AuthenticationForm
 
@@ -52,6 +58,15 @@ class LoginFormView(FormView):
         # Выполняем аутентификацию пользователя.
         login(self.request, self.user)
         return super(LoginFormView, self).form_valid(form)
+
+
+class LogoutView(View):
+    def get(self, request):
+        # Выполняем выход для пользователя, запросившего данное представление.
+        logout(request)
+
+        # После чего, перенаправляем пользователя на главную страницу.
+        return render(request, 'magazine/login.html',)
 
 
 def post_list(request):
@@ -89,3 +104,5 @@ def post_edit(request, pk):
             form = PostForm(instance=post)
         return render(request, 'magazine/post_edit.html', {'form': form})
 
+def locus(request):
+    return render(request, 'magazine/locus.html',)
