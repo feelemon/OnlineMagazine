@@ -1,0 +1,31 @@
+{% load staticfiles %}
+    <html>
+        <head>
+            <link href="https://fonts.googleapis.com/css?family=Gloria Hallelujah&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+            <title>soundfilch</title>
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+            <link rel="stylesheet" href="{% static 'css/magazine.css' %}">
+        </head>
+           <body>
+        <div class="page-header">
+            {% if user.is_authenticated %}
+                 <a href="{% url 'post_new' %}" class="top-menu">
+                     <span class="link"> Sign Out </span>
+                     <span class="link"> Office </span>
+                     <span class="link"> Places </span>
+                 </a>
+            {% endif %}
+            <p><a href="/">SoundFilch</a> </p>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+{#                <script src="20160217-b1aa4c876724665b0ea877a02ab.jpg"> </script>#}
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
