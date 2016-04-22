@@ -24,11 +24,18 @@ body, html {
       color: orangered;
   }
 
+    .black {
+        background-color: black;
+    }
+
+    .white {
+        color: white;
+    }
     .page-header {
         background-color: inherit;
         width: 100%;
         align-items: flex-start;
-        margin-top: 0;  margin-left: 0; margin-right: 0;
+        margin-top: 0;  margin-left: 0; margin-right: 0; margin-bottom: 0;
         padding: 20px 20px 10px 40px;
     }
 
@@ -39,8 +46,8 @@ body, html {
     }
 
     .content {
-        margin-left: 40px;
-        margin-right: 40px;
+        /*margin-left: 40px;*/
+        /*margin-right: 40px;*/
     }
 
     .date {
@@ -63,8 +70,15 @@ body, html {
         margin-right: 20px;
     }
 
+    .focus {
+        text-align: center;
+    }
+
+    .picture {
+        margin-bottom: 1px;
+    }
     .post {
-        margin-bottom: 70px;
+        margin-bottom: 60px;
     }
 
     .post h1 a, .post h1 a:visited {
@@ -75,5 +89,5 @@ body, html {
         color: red;
         float: right;
         font-size: 18px;
-        margin-right: 30px;
+        margin-right: 20px;
     }
