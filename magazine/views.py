@@ -78,11 +78,12 @@ def form_valid(self, form):
 #
 #
 
-def action(request, pk):
-    if request.user.pk == pk:
-        return render(request, 'magazine/post_detail.html')
-    else:
-        return render(request,'magazine/post_list.html')
+# def action(request, pk):
+#     post = get_object_or_404(Post, pk=pk)
+#     if request.user.pk == pk:
+#         return render(request, 'magazine/post_list.html', {'post': post})
+#     else:
+#         return render(request, 'magazine/post_list.html', {'post': post})
 
 class LogoutView(View):
     def get(self, request):
@@ -103,27 +104,27 @@ def post_detail(request, pk):
 
 def post_new(request):
     form = PostForm()
-    if request.method == "POST":
-        form = PostForm(request.POST)
+    # if request.method == "POST":
+    form = PostForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        post.published_date = timezone.now()
+        post.save()
+    else:
+        form = PostForm()
+    return render(request, 'magazine/post_edit.html', {'form': form})
+
+def post_edit(request, pk = None):
+        post = get_object_or_404(Post, pk = pk)
+        # if request.method == "POST":
+        form = PostForm(request.POST or None, request.FILES or None, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-        else:
-            form = PostForm()
-    return render(request, 'magazine/post_edit.html', {'form': form})
-
-def post_edit(request, pk):
-        post = get_object_or_404(Post, pk=pk)
-        if request.method == "POST":
-            form = PostForm(request.POST, instance=post)
-            if form.is_valid():
-                post = form.save(commit=False)
-                post.author = request.user
-                post.published_date = timezone.now()
-                post.save()
-                return redirect('magazine.views.post_detail', pk=post.pk)
+            return redirect('magazine.views.post_detail', pk=post.pk)
         else:
             form = PostForm(instance=post)
         return render(request, 'magazine/post_edit.html', {'form': form})
@@ -132,8 +133,8 @@ def locus(request):
     return render(request, 'magazine/locus.html',)
 
 
-def account_profile(request):
-    return None
+# def account_profile(request):
+#     return None
 
 
 @csrf_exempt

@@ -1,25 +1,15 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 
 class Post(models.Model):
     author = models.ForeignKey(User)
-    # user = User(username=['username'], email=['email'], first_name=['email'])
-    # user.save()
-    # user = models.ForeignKey(User, unique=True)
-
-    # The rest is completely up to you...
-    # favorite_band = models.CharField(max_length=100, blank=True)
-    # favorite_cheese = models.CharField(max_length=100, blank=True)
-    # lucky_number = models.IntegerField()
-
-
     title = models.CharField(max_length=200)
     text = models.TextField()
-
-    # user_id = user.pk
-
+    image = models.FileField(null=True, blank=True)
+    # cost = models.IntegerField(label='cost',  max_length=5)
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
@@ -31,6 +21,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("posts:detail", kwargs={"id": self.id})
+
+
 
     # class Meta:
     #     permissions = (
