@@ -167,3 +167,6 @@ def paypal_pay(request):
      form = PayPalPaymentsуForm(initial=paypal_dict)
      context = {"form": form, "paypal_dict": paypal_dict}
      return render(request, "magazine/payment.html", context)
+
+def backet(request):
+    return render(request, "magazine/backet.html",)

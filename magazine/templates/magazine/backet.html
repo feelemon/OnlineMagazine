@@ -1,0 +1,6 @@
+{% extends "magazine/base.html" %}
+{% for like in likes %}
+    <p class="like">
+        <a href="{% url 'post_detail' pk=pk.post %}"> {{ post.title }} </a>
+    </p>
+{% endfor %}

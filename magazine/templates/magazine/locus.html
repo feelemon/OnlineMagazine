@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 {% extends 'magazine/base.html' %}
-    {% block content %}
-<html xmlns="http://www.w3.org/1999/xhtml">
+{% block content %}
+    <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-    <title>Быстрый старт. Размещение интерактивной карты на странице</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Быстрый старт. Размещение интерактивной карты на странице</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-            <script src="../../static/js/mapbasics.js"></script>
-</head>
-        <body>
+        <script src="../../static/js/mapbasics.js"></script>
+    </head>
+    <body>
     <div id="map" class="focus" style=" height: 400px"></div>
-</body>
+    </body>
 {% endblock %}
 </html>
