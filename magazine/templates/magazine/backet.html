@@ -1,6 +1,22 @@
 {% extends "magazine/base.html" %}
-{% for like in likes %}
-    <p class="like">
-        <a href="{% url 'post_detail' pk=pk.post %}"> {{ post.title }} </a>
-    </p>
-{% endfor %}
+{% block content %}
+    <h1><font color="aqua"> Корзина </font></h1>
+    <div class="backet"></div>
+
+    <div class="total"> Сумма: <span class="sum"> 0 </span> </div> </div>
+<script type="text/javascript">
+    $(function(){
+        var arr1 = $.cookie('cart');
+        if (!arr1) {
+             arr1 = '[]';
+        }
+        var json2 = $.parseJSON(arr1);
+        var sum1 = 0;
+         $.each(json2, function(index, value) {
+             $('.backet').append('<div class="row"><img src="'+value["img"]+'"><div class="name"> '+value["name"]+' </div><div class="price">'+value["price"]+'</div></div>');
+             sum1 = sum1 + parseInt(value['price']);
+            });
+            $('.total .sum').text(sum1);
+    });
+</script>
+{% endblock %}

@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^accounts/logout/$', logout, {'next_page': 'post_list'}, name='logout'),
     url(r'^accounts/loginok/$', login, {'template_name': 'magazine/login.html'}, name='login'),
     url(r'^locus/$', views.locus, name='locus'),
-    url(r'^backet/$', views.backet, name='backet'),
+    url(r'^backet/', views.backet, name='backet'),
     # url (r'^post/(?P<pk>[0-9]+)/$'
 
     #vk

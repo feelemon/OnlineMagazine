@@ -32,7 +32,7 @@ h1, h2, h3, h4 {
 }
 
 .name {
-    margin-left: 25px;
+    margin-left: 105px;
     text-decoration: none;
     font-size: 35px;
     font-family: "Billabong";
@@ -75,7 +75,7 @@ h1, h2, h3, h4 {
 
 .group {
     float: right;
-    margin-right: 50px;
+    margin-right: 125px;
     font-size: 30px;
     /*padding-top: -70px;*/
 }
@@ -211,6 +211,46 @@ h1, h2, h3, h4 {
     color: black;
 }
 
+.cart {
+    background: #e5e5e5;
+    font-size: 14px;
+    border: 1px solid #000;
+    position: fixed;
+    top: 50%;
+    right: 0;
+}
+
+.cart .oformit, .cart .sum {
+    display: block;
+    margin: 0 auto;
+}
+.cart .oformit {
+    width: 100px;
+}
+.cart .sum{
+    width: 20px;
+}
+
+.cart .sum:after{
+    content: 'руб';
+    margin-left: 5px;
+}
+
+.buy {
+    color: #000000;
+}
+
+.backet .row {
+    display: block;
+    width: 100%;
+}
+
+.backet .row img, .backet .row .name, .backet .row .price {
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    font-size: 14px;
+}
 /*!*---------------*!*/
 /*!***** Romeo *****!*/
 /*!*---------------*!*/

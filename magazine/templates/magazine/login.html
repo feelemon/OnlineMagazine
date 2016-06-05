@@ -4,6 +4,7 @@
         {% csrf_token %}
         <!-- as_p для того, чтобы каждый элемент формы был с новой строки -->
         {{ form.as_p }}
-        <button type="submit"> Sign In</button>
+        <button type="submit"> Sign In </button>
+        <button type="submit"><a href="{% url 'home' %}"> Auth Vk </a></button>
     </form>
 {% endblock %}

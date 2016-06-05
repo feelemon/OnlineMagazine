@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+import random
+import string
 
 
 class Profile(models.Model):
@@ -25,19 +27,6 @@ class Product(models.Model):
     tag = models.CharField(max_length=100)
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.CharField(max_length=200)
-    key_words = models.CharField(max_length=100)
-    last_date = models.DateTimeField(
-        default=timezone.now)
-
-
-class Backet(models.Model):
-    profile = models.ManyToManyField(Profile)
-    product = models.CharField(Product, max_length=200)
-    quantity = models.CharField(Product, max_length=200)
-    # all_cost = models.IntegerField(sum(Product,))
 
 class Order(models.Model):
     client = models.ManyToManyField(Profile, max_length=200)
@@ -47,16 +36,39 @@ class Order(models.Model):
     cost = models.IntegerField()
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Название Категории')
+    alias = models.SlugField(verbose_name='Alias категории')
+
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+
+    def __str__(self):
+        return 'Категория %s' % self.name
+
+
 class Post(models.Model):
-    author = models.ManyToManyField(Profile)
-    title = models.CharField(max_length=200)
+    author = models.ForeignKey('auth.User')
+    title = models.CharField(max_length=200, verbose_name='Название Товара')
     text = models.TextField()
+    cost = models.IntegerField(default=0, verbose_name='Цена')
     image = models.FileField(null=True, blank=True)
     # cost = models.IntegerField(label='cost',  max_length=5)
     created_date = models.DateTimeField(
         default=timezone.now)
     published_date = models.DateTimeField(
         blank=True, null=True)
+    alias = models.SlugField(verbose_name='Alias товара')
+
+    category = models.ForeignKey(Category)
+
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
+
 
     def publish(self):
         self.published_date = timezone.now()

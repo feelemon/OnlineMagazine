@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'magazine',
     'social.apps.django_app.default',
     'paypal.standard.ipn',
+    # 'cart',
     # 'social_auth',
 )
 
