@@ -243,13 +243,27 @@ h1, h2, h3, h4 {
 .backet .row {
     display: block;
     width: 100%;
+    margin-bottom: 10px;
 }
 
-.backet .row img, .backet .row .name, .backet .row .price {
+.backet .row img, .backet .row .name, .backet .row .price, .backet .row .delete {
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
     width: 30%;
     font-size: 14px;
+}
+
+.backet .row img {
+    max-height: 100px;
+    margin-right: 30px;
+    width: auto;
+}
+
+.backet .row .delete {
+    width: 10px;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
 }
 /*!*---------------*!*/
 /*!***** Romeo *****!*/

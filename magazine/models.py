@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import *
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
@@ -27,15 +28,6 @@ class Product(models.Model):
     tag = models.CharField(max_length=100)
 
 
-
-class Order(models.Model):
-    client = models.ManyToManyField(Profile, max_length=200)
-    date_order = models.DateField()
-    date_buy = models.DateField()
-    metod = models.CharField(max_length=200, default="PayPal")
-    cost = models.IntegerField()
-
-
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название Категории')
     alias = models.SlugField(verbose_name='Alias категории')
@@ -49,6 +41,21 @@ class Category(models.Model):
     def __str__(self):
         return 'Категория %s' % self.name
 
+
+class Order(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Имя заказчика')
+    phone = models.CharField(max_length=255, verbose_name='Телефон заказчика')
+    order = models.CharField(max_length=255, verbose_name='Что заказали')
+    sum = models.IntegerField(default=0, verbose_name='Сумма заказа')
+    last_deal = models.DateField(default= datetime.now(), verbose_name='Время заказа')
+
+
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+
+    def __str__(self):
+        return 'Заказ на %s' % self.sum
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
