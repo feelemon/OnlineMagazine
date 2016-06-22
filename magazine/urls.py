@@ -16,6 +16,11 @@ urlpatterns = [
     url(r'^accounts/loginok/$', login, {'template_name': 'magazine/login.html'}, name='login'),
     url(r'^locus/$', views.locus, name='locus'),
     url(r'^backet/', views.backet, name='backet'),
+    url(r'^rock/$', views.rock, name='rock'),
+    url(r'^dance/$', views.dance, name='dance'),
+    url(r'^electro/$', views.electro, name='electro'),
+    url(r'^rap/$', views.rap, name='rap'),
+
     # url (r'^post/(?P<pk>[0-9]+)/$'
 
     #vk

@@ -170,7 +170,18 @@ def post_edit(request, pk = None):
 def locus(request):
     return render(request, 'magazine/locus.html',)
 
-
+def rock(request):
+    posts = Post.objects.filter(category__alias='Rock').order_by('-published_date')
+    return render(request, 'magazine/post_list.html', {'posts': posts})
+def rap(request):
+    posts = Post.objects.filter(category__alias='Rap').order_by('-published_date')
+    return render(request, 'magazine/post_list.html', {'posts': posts})
+def dance(request):
+    posts = Post.objects.filter(category__alias='Dance').order_by('-published_date')
+    return render(request, 'magazine/post_list.html', {'posts': posts})
+def electro(request):
+    posts = Post.objects.filter(category__alias='Electro').order_by('-published_date')
+    return render(request, 'magazine/post_list.html', {'posts': posts})
 #     return None
 def backet(request):
     return render(request, "magazine/backet.html",)

@@ -28,12 +28,12 @@ def show_me_the_money(sender, **kwargs):
             Users.objects.update(paid=True)
 
 valid_ipn_received.connect(show_me_the_money)
-
-def show_me_the_money(sender, **kwargs):
-    ipn_obj = sender
-    if ipn_obj.custom == "upgrade all users!":
-        Users.object.update(paid = True)
-    payment_was_successful.connect(show_me_the_money)
+#
+# def show_me_the_money(sender, **kwargs):
+#     ipn_obj = sender
+#     if ipn_obj.custom == "upgrade all users!":
+#         Users.object.update(paid = True)
+#     payment_was_successful.connect(show_me_the_money)
 
 class Users(models.Model):
     paid = False
@@ -46,7 +46,7 @@ class Users(models.Model):
 #
 #
 #     payment_was_successful.connect(my_callback)
-from paypal.standard.models import ST_PP_COMPLETED
+# from paypal.standard.models import ST_PP_COMPLETED
 
 
 # def show_me_the_money(sender, **kwargs):
