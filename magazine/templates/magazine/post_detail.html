@@ -17,16 +17,16 @@
         <span class="value">{{post.cost}}</span>
 
         <h1 align="center">
-            <a id = "post{{ post.author.id }}" class="btn btn-default" href="{% url 'cart' %}"><span class="glyphicon glyphicon-download"></span></a>
-            <a href="#" class="buy"> Купить </a>
-            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span
-                    class="glyphicon glyphicon-pencil"></span></a>
+{#            <a id = "post{{ post.author.id }}" class="btn btn-default" href="{% url 'cart' %}"><span class="glyphicon glyphicon-download"></span></a>#}
+            <a href="#" class="buy"> <div class="btn btn-default"> <span style="font-family: 'Billabong'; font-size: 20px"> Add to cart </span></div></a>
+{#            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span#}
+{#                    class="glyphicon glyphicon-pencil"></span></a>#}
         </h1>
 {#        <div class="date">#}
 {#            {{ post.published_date }}#}
 {#        </div>#}
     <div class="cart"> В Корзине товаров на <span class="sum"> 0 </span><br>
-        <a class="oformit" href="/order/">Оформить заказ</a> </div>
+        <a class="oformit" onclick="ShowMoney()">Оформить заказ</a> </div>
     </div>
     <script type="text/javascript">
     $(function(){
@@ -62,6 +62,11 @@
 
     });
     </script>
-
+    <script>
+    function ShowMoney() {
+        var sum = $('.cart .sum').text();
+        location.href = '/payment/cart/' + sum + '/';
+    }
+    </script>
     {#        </div>#}
 {% endblock %}

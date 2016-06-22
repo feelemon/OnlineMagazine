@@ -34,7 +34,7 @@
 
         <span class="group">
             <a href="{% url 'backet' %}"
-                   class="glyphicon glyphicon-cloud"></a>
+                       class="glyphicon glyphicon-heart-empty"></a>
             <span style='padding-left:10px;'></span>
                 <a href="{% url 'locus' %}"
                    class="glyphicon glyphicon-fire"></a>
@@ -52,7 +52,6 @@
     {% endblock %}
 </div>
 
-
 <div class="bot-menu">
     {% if user.is_authenticated %}
         <a class="hvr-overline-reveal" href="{% url 'logout' %}"> Sign Out </a>
@@ -67,9 +66,10 @@
         <a class="hvr-overline-reveal" href="{% url 'login' %}"> Sign In </a>
         {#                <a href="{% url socialauth_begin 'vkontakte-oauth2' %}">Enter VK</a>#}
     {% endif %}
+    <p align="center"> © 2016  SoundFilch </p>
 </div>
 
-<p align="center"> © 2016  SoundFilch </p>
+
 
 {#        <div class="black" align="center">#}
 {#            <b class="white"> Authorization: </b>#}

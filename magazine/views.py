@@ -1,24 +1,56 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import View
 from django.views.generic.edit import FormView
 from .forms import PostForm
-from .models import Post
+from .models import *
+from django.views.decorators.csrf import csrf_exempt
+from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
+from paypal.standard.models import ST_PP_COMPLETED
+from paypal.standard.ipn.signals import valid_ipn_received
+
+
+@csrf_exempt
+def paypal_success(request):
+    """
+    Tell user we got the payment.
+   """
+    return HttpResponse("Money is mine. Thanks.")
+
+
+@login_required
+def paypal_pay(request, sum):
+     paypal_dict = {
+         "business": "feelemon@bk.ru",
+         "amount": 'sum',
+         "currency_code": "RUB",
+         "item_name": "Products in Soundfilch",
+         "invoice": "INV-00001",
+         "notify_url": reverse('paypal-ipn'),
+         "return_url": "http://localhost:8000/payment/success/",
+         "cancel_return": "http://localhost:8000/payment/cart/",
+         "custom": str(request.user.id)
+     }
+
+     paypal_dict['amount'] = sum
+     # Create the instance.
+     print(paypal_dict['amount'])
+     form = PayPalPaymentsForm(initial=paypal_dict)
+     context = {"form": form, "paypal_dict": paypal_dict}
+     return render(request, "magazine/payment.html", context)
+
+def summa():
+    return str()
 
 
 
 def home(request):
-     """
-     Home page with auth links.
-     """
      if request.user.is_authenticated():
          return HttpResponse("{0} <a href='/accounts/logout'>exit</a>".format(request.user))
      else:
@@ -26,9 +58,6 @@ def home(request):
 
 @login_required
 def account_profile(request):
-     """
-     Show user greetings. ONly for logged in users.
-     """
      return HttpResponse("Hi, {0}! Nice to meet you.".format(request.user.first_name))
 
 
@@ -94,13 +123,21 @@ class LogoutView(View):
         return render(request, 'magazine/post_list.html',)
 
 
+def backet_view(request):
+    order = Order.objects.filter(owner=request.user, payment=False).latest("time_add")
+    items = order.item_set.all()
+    return render(request, 'magazine/backet.html', {'items': items, 'order': order})
+
+
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'magazine/post_list.html', {'posts': posts})
 
+
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'magazine/post_detail.html', {'post': post})
+
 
 def post_new(request):
     form = PostForm()
@@ -114,6 +151,7 @@ def post_new(request):
     else:
         form = PostForm()
     return render(request, 'magazine/post_edit.html', {'form': form})
+
 
 def post_edit(request, pk = None):
         post = get_object_or_404(Post, pk = pk)
@@ -133,40 +171,6 @@ def locus(request):
     return render(request, 'magazine/locus.html',)
 
 
-# def account_profile(request):
 #     return None
-
-
-@csrf_exempt
-def paypal_success(request):
-     """
-     Tell user we got the payment.
-     """
-     return HttpResponse("Money is mine. Thanks.")
-
-
-
-@login_required
-def paypal_pay(request):
-     """
-     Page where we ask user to pay with paypal.
-     """
-     paypal_dict = {
-         "business": "acccko-facilitator@gmail.com",
-         "amount": "100.00",
-         "currency_code": "RUB",
-         "item_name": "products in socshop",
-         "invoice": "INV-00001",
-         "notify_url": reverse('paypal-ipn'),
-         "return_url": "http://localhost:8000/payment/success/",
-         "cancel_return": "http://localhost:8000/payment/cart/",
-         "custom": str(request.user.id)
-     }
-
-     # Create the instance.
-     form = PayPalPaymentsуForm(initial=paypal_dict)
-     context = {"form": form, "paypal_dict": paypal_dict}
-     return render(request, "magazine/payment.html", context)
-
 def backet(request):
     return render(request, "magazine/backet.html",)

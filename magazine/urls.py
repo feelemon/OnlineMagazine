@@ -24,7 +24,7 @@ urlpatterns = [
     url('', include(social.apps.django_app.urls, namespace='social')),
 
     #Paypal
-    url(r'^payment/cart/$', views.paypal_pay, name='cart'),
+    url(r'^payment/cart/(?P<sum>[0-9]+)/$', views.paypal_pay, name='cart'),
     url(r'^payment/success/$', views.paypal_success, name='success'),
     url(r'^paypal/', include(paypal.standard.ipn.urls)),
 ]

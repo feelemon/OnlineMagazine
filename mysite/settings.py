@@ -142,3 +142,5 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 from .local_settings import *
 
 LOGIN_REDIRECT_URL = '/'
+
+PAYPAL_RECEIVER_EMAIL = "feelemon@bk.ru"
