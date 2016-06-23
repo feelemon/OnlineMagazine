@@ -7,6 +7,34 @@
     <p>Invoice: {{ paypal_dict.invoice }}</p>
     <br/>
     <p>Pay with PayPal:</p>
-    {{ form.render }}
-
+{#    <form>#}
+{#        <input type="hidden" name="project_name" value="Site Name">#}
+{#        <input type="hidden" name="admin_email" value="feelemon@bk.ru">#}
+{#        <input type="hidden" name="form_subject" value="Form Subject">#}
+        {{ form.render }}
+{#    </form>#}
+{##}
+{#    <script>#}
+{#    $(document).ready(function() {#}
+{##}
+{#	//E-mail Ajax Send#}
+{#	$("form").submit(function() { //Change#}
+{#		var th = $(this);#}
+{#		$.ajax({#}
+{#			type: "POST",#}
+{#			url: "mail.php", //Change#}
+{#			data: th.serialize()#}
+{#		}).done(function() {#}
+{#			alert("Thank you!");#}
+{#			setTimeout(function() {#}
+{#				// Done Functions#}
+{#				th.trigger("reset");#}
+{#			}, 1000);#}
+{#            console.log(th.serialize());#}
+{#		});#}
+{#		return false;#}
+{#	});#}
+{##}
+{#});#}
+{#    </script>#}
 {% endblock %}

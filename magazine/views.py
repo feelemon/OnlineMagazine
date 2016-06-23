@@ -10,6 +10,8 @@ from django.views.generic.base import View
 from django.views.generic.edit import FormView
 from paypal.standard.forms import PayPalPaymentsForm
 from .forms import PostForm
+from django.contrib.auth.models import Permission, User
+from django.shortcuts import get_object_or_404
 from .models import *
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -40,6 +42,8 @@ def paypal_pay(request, sum):
      # Create the instance.
      print(paypal_dict['amount'])
      form = PayPalPaymentsForm(initial=paypal_dict)
+     # user = User.objects.filter(last_name=)
+     # user = get_object_or_404(User)
      context = {"form": form, "paypal_dict": paypal_dict}
      return render(request, "magazine/payment.html", context)
 
@@ -171,15 +175,19 @@ def locus(request):
 def category_rock(request):
     posts = Post.objects.filter(category__alias='Rock').order_by('-published_date')
     return render(request, 'magazine/post_list.html', {'posts': posts})
+
 def rap(request):
     posts = Post.objects.filter(category__alias='Rap').order_by('-published_date')
     return render(request, 'magazine/post_list.html', {'posts': posts})
+
 def dance(request):
     posts = Post.objects.filter(category__alias='Dance').order_by('-published_date')
     return render(request, 'magazine/post_list.html', {'posts': posts})
+
 def electro(request):
     posts = Post.objects.filter(category__alias='Electro').order_by('-published_date')
     return render(request, 'magazine/post_list.html', {'posts': posts})
+
 #     return None
 def backet(request):
     return render(request, "magazine/backet.html",)
