@@ -131,7 +131,8 @@ class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200, verbose_name='Название Товара')
     text = models.TextField()
-    cost = models.IntegerField(default=0, verbose_name='Цена')
+    cost = models.CharField(max_length=200, verbose_name='Цена')
+    number = models.IntegerField(default=1, verbose_name='Количество')
     image = models.FileField(null=True, blank=True)
     # cost = models.IntegerField(label='cost',  max_length=5)
     created_date = models.DateTimeField(

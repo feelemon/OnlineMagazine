@@ -4,13 +4,45 @@
     <div class="backet"></div>
 
     <div class="total"> Сумма: <span class="sum"> 0 </span> </div>
-    Имя: <input name="name" placeholder="ФИО">
-    Телефон: <input name="phone" placeholder="88005353535">
+    <form>
+        <input type="hidden" name="project_name" value="Site Name">
+		<input type="hidden" name="admin_email" value="admin@mail.com">
+		<input type="hidden" name="form_subject" value="Form Subject">
+		<!-- END Hidden Required Fields -->
+
+		<input type="text" name="Name" placeholder="You name..." required><br>
+		<input type="text" name="E-mail" placeholder="You E-mail..." required><br>
+		<input type="text" name="Phone" placeholder="You phone..."><br>
+		<button>Send</button>
+        </form>
 {#    <a id="cart" href="{% url 'cart' %}"> <h1>Show me the money!</h1></a>#}
 
-    <h1 id="cart" class='oplata' onclick="ShowMoney()">Show me the money!</h1>
+    <h1 id="cart" class='oplata' onclick="ShowMoney()">Pay For Purchases</h1>
     {{ form.render }}
 
+
+    <script>
+    $(document).ready(function() {
+
+	//E-mail Ajax Send
+	$("form").submit(function() { //Change
+		var th = $(this);
+		$.ajax({
+			type: "POST",
+			url: "mail.php", //Change
+			data: th.serialize()
+		}).done(function() {
+			alert("Thank you!");
+			setTimeout(function() {
+				// Done Functions
+				th.trigger("reset");
+			}, 1000);
+		});
+		return false;
+	});
+
+});
+    </script>
 <script type="text/javascript">
     $(function(){
         var arr1 = $.cookie('cart');
@@ -60,4 +92,6 @@
 
     }
     </script>
+
+
 {% endblock %}

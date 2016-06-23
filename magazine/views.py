@@ -1,20 +1,18 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
-from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import View
 from django.views.generic.edit import FormView
+from paypal.standard.forms import PayPalPaymentsForm
 from .forms import PostForm
 from .models import *
-from django.views.decorators.csrf import csrf_exempt
-from django.core.urlresolvers import reverse
-from paypal.standard.forms import PayPalPaymentsForm
-from paypal.standard.models import ST_PP_COMPLETED
-from paypal.standard.ipn.signals import valid_ipn_received
-
+from django.contrib import messages
+from django.core.mail import send_mail
 
 @csrf_exempt
 def paypal_success(request):
@@ -170,7 +168,7 @@ def post_edit(request, pk = None):
 def locus(request):
     return render(request, 'magazine/locus.html',)
 
-def rock(request):
+def category_rock(request):
     posts = Post.objects.filter(category__alias='Rock').order_by('-published_date')
     return render(request, 'magazine/post_list.html', {'posts': posts})
 def rap(request):

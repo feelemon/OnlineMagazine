@@ -42,8 +42,8 @@ h1, h2, h3, h4 {
 .bot-menu {
     position: static;
     bottom: 0;
-    width: 100%;
-    margin-bottom: 0;
+    /*width: 100%;*/
+    /*margin-bottom: 0;*/
     text-align: center;
     /*padding-top: 100px;*/
     /*margin-bottom: 15px;*/
@@ -262,6 +262,10 @@ h1, h2, h3, h4 {
     border-color: #828282;
 }
 
+.tsvet {
+    /*background-color: gold;*/
+}
+
 .backet .row img, .backet .row .name, .backet .row .price, .backet .row .delete {
     display: inline-block;
     vertical-align: middle;
@@ -272,6 +276,14 @@ h1, h2, h3, h4 {
     max-height: 100px;
     margin-right: 30px;
     width: auto;
+}
+
+.left_pay{
+    float: left;
+}
+
+.right_pay {
+    float: right;
 }
 
 .backet .row .delete {

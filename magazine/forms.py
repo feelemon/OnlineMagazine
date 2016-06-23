@@ -9,4 +9,5 @@ class PostForm(forms.ModelForm):
                   'text',
                   'image',
                   'cost',
+                  'number'
                   ]

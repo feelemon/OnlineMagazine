@@ -143,4 +143,10 @@ from .local_settings import *
 
 LOGIN_REDIRECT_URL = '/'
 
-PAYPAL_RECEIVER_EMAIL = "feelemon@bk.ru"
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'feelemon@bk.ru'
+EMAIL_HOST_PASSWORD = 'Omnomnom123'
+EMAIL_PORT = 587
