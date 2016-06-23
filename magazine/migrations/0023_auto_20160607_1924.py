@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+import datetime
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('magazine', '0022_auto_20160607_1523'),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Users',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+            ],
+        ),
+        migrations.AlterField(
+            model_name='order',
+            name='last_deal',
+            field=models.DateField(verbose_name='Время заказа', default=datetime.datetime(2016, 6, 7, 19, 24, 14, 28724)),
+        ),
+    ]

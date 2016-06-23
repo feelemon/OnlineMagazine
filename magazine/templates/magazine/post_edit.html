@@ -1,9 +1,13 @@
 {% extends 'magazine/base.html' %}
 
-    {% block content %}
+{% block content %}
+    {#        <div class="opis">#}
+    <div class="container content">
         <h1>New post</h1>
-        <form method="POST" class="post-form">{% csrf_token %}
+        <form method="POST" action='' enctype='multipart/form-data' class="post-form">{% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="save btn btn-default">Save</button>
+             <button type="submit" class="save btn btn-default"> <a href="{% url 'post_list'%}"> Save  </a> </button>
         </form>
-    {% endblock %}
+        {#        </div>#}
+    </div>
+{% endblock %}

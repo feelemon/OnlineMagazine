@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 {% extends 'magazine/base.html' %}
-    {% block content %}
-<html xmlns="http://www.w3.org/1999/xhtml">
+{% block content %}
+    <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-    <title>Быстрый старт. Размещение интерактивной карты на странице</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Быстрый старт. Размещение интерактивной карты на странице</title>
+        <h1>About SoundFilch</h1>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-            <script src="../../static/js/mapbasics.js"></script>
-</head>
-        <body>
-    <div id="map" style=" height: 400px"></div>
-</body>
+        <script src="../../static/js/mapbasics.js"></script>
+    </head>
+    <body>
+    <div id="map" class="focus" style=" height: 400px"></div>
+    <p style="margin-left: 15px; margin-right: 15px">SoundFilch is the world’s leading social sound platform where anyone can create sounds and share them everywhere.
+
+Recording and uploading sounds to SoundFilch lets people easily share them privately with their friends or publicly to blogs, sites and social networks.
+
+It takes just a click to share sounds to Twitter, Tumblr, Facebook and Foursquare.
+
+SoundFilch can be accessed anywhere using the official iPhone and Android apps, as well as hundreds of creation and sharing apps built on the SoundFilch platform.
+
+Don't have a free account yet?</p>
+    </body>
 {% endblock %}
 </html>

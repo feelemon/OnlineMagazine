@@ -1,9 +1,13 @@
 {% extends 'magazine/base.html' %}
     {% block content %}
+
         <form action="" method="post">
       {% csrf_token %}
+{#            <div class="register">#}
       <!-- as_p для того, чтобы каждый элемент формы был с новой строки -->
-      {{ form.as_p }}
-      <button type="submit">Зарегистрироваться</button>
+      {{ form.as_p|linebreaks }}
+{#            </div>#}
+      <button type="submit"> <a class="but" href="{% url 'post_list' %}"> Зарегистрироваться </a> </button>
          </form>
+
     {% endblock %}
